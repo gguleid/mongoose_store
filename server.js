@@ -5,7 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose'); 
 const Tea = require('./model/products.js');
 const app = express();
-const port = 4005;
+
 
 
 // =================================================================================
@@ -19,11 +19,10 @@ app.use(express.urlencoded({extended: false}));
 // Configure Mongoose
 // =================================================================================
 
-const DATABASE_URL = 'mongodb+srv://admin:abc1234@cluster0.kpfq4.mongodb.net/teashop?retryWrites=true&w=majority';
 
 const db = mongoose.connection;
 
-mongoose.connect(DATABASE_URL, {
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
