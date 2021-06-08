@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Assembly Tea Shop</title>
+</head>
+<body>
+    <nav>
+        <a href="/shop/new">Add more tea!</a>
+    </nav>
+   <h1>Tea Menu</h1><ul>
+    <%teas.forEach(teas => { %>
+        <a href="/shop/<%=teas._id; %>"><img src="<%=teas.img  %> " alt=""></a>
+        <p> <%=teas.name; %> </p>
+        <p><%=teas.description  %></p>
+        <p>$<%=teas.price  %> per pound</p>
+        <p><%=teas.qty  %>pounds</p>
+        <% }) %>      
+    
+</body>
+</html>
