@@ -13,11 +13,12 @@
    <h1>Tea Menu</h1><ul>
     <%teas.forEach(teas => { %>
         <a href="/shop/<%=teas._id; %>"><img src="<%=teas.img  %> " alt=""></a>
-        <p> <%=teas.name; %> </p>
+        <p> <%=teas.name; %> </p>    
         <p><%=teas.description  %></p>
         <p>$<%=teas.price  %> per pound</p>
-        <p><%=teas.qty  %>pounds</p>
+        <p><%=teas.qty  %> lbs</p> <br>
+        <a href="/shop/<%=teas._id%>/edit">EDIT</a>
+   
         <% }) %>      
-    
 </body>
 </html>

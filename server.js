@@ -5,7 +5,8 @@ const express = require('express');
 const mongoose = require('mongoose'); 
 const Tea = require('./model/products.js');
 const app = express();
-
+const methodOverride = require('method-override')
+require('dotenv').config();
 
 
 // =================================================================================
@@ -13,6 +14,7 @@ const app = express();
 // =================================================================================
 
 app.use(express.urlencoded({extended: false}));
+app.use(methodOverride('_method'));     
 
 
 // =================================================================================
@@ -67,21 +69,39 @@ app.get('/shop/new', (req, res) => {
 
 
 // Delete
+// Delete
+app.delete('/shop/:id', (req, res) => {
+    Tea.splice(req.params.id, 1);
+    res.redirect('/shop');
+  });
 
 
+// Update
+app.put('/shop/:id', (req, res) => {
 
-// Update 
-
+    Tea[req.params.id] = req.body;
+    res.redirect('/shop');
+  });
+  
 
 
 // Create
 app.post('/shop', (req, res) => {
-    Tea.create(req.body, (error, newTea) => { //call back is a status update from mongoose
+    Tea.create(req.body, (error, newTea) => { 
         res.redirect('/shop');
     });
 });
 
 // Edit
+app.get('/shop/:id/edit', (req, res) => {
+	res.render(
+		'edit.ejs', 
+		{ 
+			tea: Tea[req.params.id], 
+			index: req.params.id 
+		}
+	);
+});
 
 
 // Show
@@ -110,4 +130,5 @@ app.get('/shop/:id', (req, res) => {
 // =================================================================================
 // Web express 
 // =================================================================================
-app.listen(port, () => console.log(`express is listening on port: ${port}`));
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`express is listening on port: ${PORT}`));
