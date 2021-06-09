@@ -1,6 +1,81 @@
-h1 {
-    border: 5px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px 0;
-  }
+/* ================ */
+/*     GENERAL      */
+/* ================ */
+body {
+  background-color:rgb(219, 207, 197);
+  
+  
+  margin: 0;
+  padding: 0;
+  
+}
+a {
+  text-decoration: none;
+}
+
+*/
+
+/* ================ */
+/*      HEADER     */
+/* ================ */
+
+
+/* ================ */
+/*      INDEX       */
+/* ================ */
+
+.imgae {
+  width: 800px;
+  height: 500px;
+border-radius: 15%; 
+}
+
+
+
+p  {
+  text-align: center;
+  margin-left: 50em;
+  color: rgb(142, 89, 81);
+  border-bottom: 4px solid rgb(219, 207, 197);
+  padding-bottom: 0.2em;
+  width: 10%;
+  margin-bottom: 0.5em;
+  background-color: white;
+}
+
+/* ================ */
+/*       SHOW       */
+/* ================ */
+
+
+/* ================ */
+/*       NEW        */
+/* ================ */
+input[type="text"], input[type="submit"] {
+  width: 60%;
+  padding: 1em;
+  border: 0px;
+  border-radius: 0.5em;
+  box-shadow: 1px 1px 2px #ddd;
+  margin: 0.5em 0;
+}
+input[type="submit"] {
+  width: 61%;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1em;
+  color: whitesmoke;
+  background-color: rgb(129, 110, 124);
+}
+input[type="submit"]:hover {
+  cursor: pointer;
+  background: rgb(142, 89, 81);
+}
+form strong {
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 0.3em;
+  color: rgb(152, 130, 110);
+}
+
