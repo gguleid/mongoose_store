@@ -58,9 +58,9 @@ app.get('/shop/seed', (req, res) => {
 
 
 //Root
-app.get('/', (req, res) => {
-    res.send('Welcome to the Tea Shop!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the Tea Shop!');
+// });
 
 // Index
 app.get('/shop', (req, res) => {
