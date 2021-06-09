@@ -14,7 +14,11 @@ require('dotenv').config();
 // =================================================================================
 
 app.use(express.urlencoded({extended: false}));
-app.use(methodOverride('_method'));     
+app.use(methodOverride('_method'));    
+app.use(express.static('public'));
+
+
+
 
 
 // =================================================================================
@@ -52,6 +56,12 @@ app.get('/shop/seed', (req, res) => {
 	})
 })
 
+
+//Root
+app.get('/', (req, res) => {
+    res.send('Welcome to the Tea Shop!');
+});
+
 // Index
 app.get('/shop', (req, res) => {
     Tea.find({}, (error, allTeas) => {
@@ -68,7 +78,6 @@ app.get('/shop/new', (req, res) => {
 });
 
 
-// Delete
 // Delete
 app.delete('/shop/:id', (req, res) => {
     Tea.splice(req.params.id, 1);
@@ -94,13 +103,11 @@ app.post('/shop', (req, res) => {
 
 // Edit
 app.get('/shop/:id/edit', (req, res) => {
-	res.render(
-		'edit.ejs', 
-		{ 
-			tea: Tea[req.params.id], 
-			index: req.params.id 
-		}
-	);
+	Tea.findById(req.params.id, (error, editTea) => {
+        res.render('edit.ejs', {
+            tea:editTea
+        });
+    });
 });
 
 
