@@ -57,11 +57,6 @@ app.get('/shop/seed', (req, res) => {
 })
 
 
-//Root
-// app.get('/', (req, res) => {
-//     res.send('Welcome to the Tea Shop!');
-// });
-
 // Index
 app.get('/shop', (req, res) => {
     Tea.find({}, (error, allTeas) => {
@@ -80,18 +75,33 @@ app.get('/shop/new', (req, res) => {
 
 // Delete
 app.delete('/shop/:id', (req, res) => {
-    Tea.splice(req.params.id, 1);
-    res.redirect('/shop');
-  });
+    Tea.findByIdAndDelete(req.params.id, (error, deletedBook) => {
+        res.redirect('/shop');
+    });
+});
+
+
+// Update Buy Button 
+app.put('/shop/:id/buy', (req, res) =>{
+    Tea.findOneAndUpdate(req.params.id, {new:true}, {
+        $inc: { 
+            // https://docs.mongodb.com/manual/reference/operator/update/inc/)
+            "tea.qty": -1,
+            },
+        
+    })
+    res.redirect(`/shop/${req.params.id}`);
+
+});
 
 
 // Update
 app.put('/shop/:id', (req, res) => {
 
-    Tea[req.params.id] = req.body;
-    res.redirect('/shop');
-  });
-  
+    Tea.findByIdAndUpdate(req.params.id, req.body, (error, updatedBook) => {
+        res.redirect(`/shop/${req.params.id}`)
+    });
+});
 
 
 // Create
@@ -100,12 +110,11 @@ app.post('/shop', (req, res) => {
         res.redirect('/shop');
     });
 });
-
 // Edit
 app.get('/shop/:id/edit', (req, res) => {
-	Tea.findById(req.params.id, (error, editTea) => {
+	Tea.findById(req.params.id, (error, foundTea) => {
         res.render('edit.ejs', {
-            tea:editTea
+            tea:foundTea
         });
     });
 });

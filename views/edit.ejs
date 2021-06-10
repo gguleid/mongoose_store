@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>Edit Tea Entry Page</h1>
-    <form action="/shop" method="POST">
-        Name: <input type="text" name="name" /><br/>
-        Description: <input type="text" name="description" id=""> <br/>
-        Price: <input type="text" name="price"><br>
+    <form action="/shop/<%=tea.id %>?_method=PUT" method="POST">
+        Name: <input type="text" name="name" value="<%= tea.name %> " /><br/>
+        Description: <input type="text" name="description" value="<%= tea.description %> "> <br/>
+        Price: <input type="text" name="price" value="<%=tea.price%>"><br>
         <input type="submit" name="" value="Edit to inventory">
     </form>
 </body>
